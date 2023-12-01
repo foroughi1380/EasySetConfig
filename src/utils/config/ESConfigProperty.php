@@ -20,5 +20,16 @@ class ESConfigProperty
         TYPE_MONEY = "money",
         TYPE_STRING = "string";
 
-    public function __construct(public string $type, public $initValue , public string $title , public string $description, public $extras){}
+    public function __construct(public string $type, public $initValue , public $title , public $description, public $extras){}
+
+
+
+    public function toArray(){
+        return [
+          "type"=>$this->type,
+          "title" => $this->title,
+          "description" => $this->description,
+          "extras" => $this->extras
+        ];
+    }
 }

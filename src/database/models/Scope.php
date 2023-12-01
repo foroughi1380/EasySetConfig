@@ -12,6 +12,9 @@ use Laravel\Sanctum\HasApiTokens;
 
 class Scope extends Model
 {
+
+    protected $table = "esconfig_scopes";
+    public $timestamps = false;
     protected $fillable = [
         "scope",
         "title",
@@ -21,33 +24,7 @@ class Scope extends Model
 
 
     protected $casts = [
-        "value" => "string",
         "extras" => "array"
     ];
-
-    /**
-     * @return string[]
-     */
-    public function getCasts(): array
-    {
-        $casts = parent::getCasts();
-
-        if (empty($this->type)) return $casts;
-
-        switch (strtolower($this->type)) {
-            case "array":
-            case "any":
-                $valueCast = SerialCast::class;
-                break;
-            case "multiline":
-                $valueCast = "string";
-                break;
-            default:
-                $valueCast = $this->type;
-        }
-
-        $casts['value'] = $valueCast ?? $casts['value'];
-        return $casts;
-    }
 
 }

@@ -5,7 +5,7 @@ namespace Gopex\EasySetConfig\utils;
 class ESConfig
 {
     public static function scope(string $scope): ESConfigAccess{
-        return new ESConfigAccess($scope);
+        return new ESConfigAccess("." . $scope);
     }
 
     public static function get(string $key){

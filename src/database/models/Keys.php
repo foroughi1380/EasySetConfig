@@ -10,6 +10,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Keys extends Model
 {
+
+    protected $table = "esconfig_keys";
+    public $timestamps = false;
     protected $fillable = [
         "key",
         "value",

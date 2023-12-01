@@ -1,7 +1,7 @@
 <?php
 
 if (! function_exists(__NAMESPACE__ . '\esconfig_property')){
-    function esconfig_property($type , $initValue, $title="" , $description="" , $extras = []): \Gopex\EasySetConfig\utils\config\ESConfigProperty
+    function esconfig_property($type , $initValue, $title=null , $description=null , $extras = null): \Gopex\EasySetConfig\utils\config\ESConfigProperty
     {
         return new \Gopex\EasySetConfig\utils\config\ESConfigProperty($type , $initValue , $title , $description, $extras);
     }
