@@ -4,7 +4,7 @@
     "type": "library",
     "license": "GPL-3.0-or-later",
     "autoload": {
-        "files": ["src/utils/configFunctions.php"],
+        "files": ["src/utils/config/configFunctions.php"],
         "psr-4": {
             "Gopex\\EasySetConfig\\": "src/"
         }
