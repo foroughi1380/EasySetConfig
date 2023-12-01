@@ -3,8 +3,12 @@
 namespace Gopex\EasySetConfig\utils;
 
 use Gopex\EasySetConfig\database\models\Keys;
+use Gopex\EasySetConfig\database\models\Scope;
 use Illuminate\Cache\Events\CacheHit;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
+use MongoDB\Driver\Query;
+use \Illuminate\Database\Eloquent\Collection;
 
 class ESConfigAccess implements IESAccess
 {
@@ -55,5 +59,20 @@ class ESConfigAccess implements IESAccess
         }
 
         return $flag;
+    }
+
+    public function getRaw(string $key): Model
+    {
+        return Keys::query()->where("key", $this->scope . "." . $key)->first();
+    }
+
+    public function getRawSubSet(): Collection
+    {
+        return Keys::query()->where("key", "like" , $this->scope . "%")->get();
+    }
+
+    public function getRawScopeSubSet(): Collection
+    {
+        return Scope::query()->where("scope", "like" , $this->scope . "%")->get();
     }
 }
