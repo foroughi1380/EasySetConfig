@@ -5,6 +5,7 @@ namespace Gopex\EasySetConfig\commands;
 use Dflydev\DotAccessData\Data;
 use Gopex\EasySetConfig\database\models\Keys;
 use Gopex\EasySetConfig\database\models\Scope;
+use Gopex\EasySetConfig\facade\ESConfig;
 use Gopex\EasySetConfig\utils\config\ESConfigDescription;
 use Gopex\EasySetConfig\utils\config\ESConfigExtras;
 use Gopex\EasySetConfig\utils\config\ESConfigProperty;
@@ -36,6 +37,7 @@ class FromConfig extends Command
             Scope::query()->truncate();
             Keys::query()->truncate();
             echo "truncate table success";
+            echo ESConfig::forgetAll() ? "cache removed" : "error in remove cache";
         }
 
         [$cs , $ck] = $this->loadConfigFile();
@@ -108,6 +110,9 @@ class FromConfig extends Command
             $sDelete = count($sDelete);
 
             Keys::query()->whereIn("key" , array_keys($kDelete))->delete();
+            foreach (array_keys($kDelete) as $k){
+                ESConfig::forget($k);
+            }
             $kDelete = count($kDelete);
         }
 

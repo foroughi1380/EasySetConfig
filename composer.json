@@ -16,7 +16,7 @@
                 "Gelim\\EMConfig\\Providers\\ConfigServiceProvider"
             ],
             "alias" : {
-                "ESConfig" : "Gopex\\EasySetConfig\\utils\\ESConfig"
+                "ESConfig" : "Gopex\\EasySetConfig\\facade\\ESConfig"
             }
         }
     }

@@ -2,6 +2,9 @@
 namespace Gopex\EasySetConfig\providers;
 
 use Gopex\EasySetConfig\commands\FromConfig;
+use Gopex\EasySetConfig\utils\ESConfigAccess;
+use Gopex\EasySetConfig\utils\ESConfigAccessWithoutCache;
+use Gopex\EasySetConfig\utils\IESAccess;
 use Illuminate\Support\ServiceProvider;
 
 class ConfigServiceProvider extends ServiceProvider
@@ -10,7 +13,8 @@ class ConfigServiceProvider extends ServiceProvider
     {
         $this->loadMigrationsFrom(__DIR__ . "/../database/migrations");
         $this->publishes([
-            __DIR__ . "/../configs/configSet.php" => config_path("configSet.php")
+            __DIR__ . "/../configs/configSet.php" => config_path("configSet.php"),
+            __DIR__ . "/../configs/easySetConfig.php" => config_path("easySetConfig.php")
         ],["esconfig"]);
         $this->commands([
             FromConfig::class
@@ -19,9 +23,13 @@ class ConfigServiceProvider extends ServiceProvider
 
     public function register()
     {
-//        $this->app->singleton(IConfigRepository::class , function (){
-//            return new EloquentConfigRepository();
-//        });
+        $this->app->singleton(IESAccess::class , function (){
+            if (config("easySetConfig.cache_enabled")){
+                return new ESConfigAccess("");
+            }else{
+                return new ESConfigAccessWithoutCache("");
+            }
+        });
 //
 //        $this->app->singleton("emconfing-config" , function (){
 //            return new EMConfigService();
