@@ -1,0 +1,21 @@
+{
+    "name": "gopex/easy-set-config",
+    "description": "A pcakge to help you set peject's configs in laravel",
+    "type": "library",
+    "license": "GPL-3.0-or-later",
+    "autoload": {
+        "files": ["src/utils/configFunctions.php"],
+        "psr-4": {
+            "Gopex\\EasySetConfig\\": "src/"
+        }
+    },
+    "require": {},
+    "extra" : {
+        "laravel": {
+            "providers" : [
+                "Gelim\\EMConfig\\Providers\\ConfigServiceProvider"
+            ]
+        }
+    }
+
+}
