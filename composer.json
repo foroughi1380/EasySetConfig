@@ -1,6 +1,7 @@
 {
     "name": "gopex/easy-set-config",
     "description": "A pcakge to help you set peject's configs in laravel",
+    "version": "0.1.0",
     "type": "library",
     "license": "GPL-3.0-or-later",
     "autoload": {
