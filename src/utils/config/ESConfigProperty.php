@@ -18,7 +18,9 @@ class ESConfigProperty
         TYPE_FLOAT = "float",
         TYPE_INTEGER = "integer",
         TYPE_MONEY = "money",
-        TYPE_STRING = "string";
+        TYPE_STRING = "string",
+        TYPE_COMBOBOX = "combobox",
+        TYPE_STRING_WITH_SUGGEST = "string_with_suggest";
 
     public function __construct(public string $type, public $initValue , public $title , public $description, public $extras){}
 

@@ -39,10 +39,12 @@ class Keys extends Model
 
         switch (strtolower($this->type)) {
             case ESConfigProperty::TYPE_ARRAY:
-            case  ESConfigProperty::TYPE_ANY:
+            case ESConfigProperty::TYPE_ANY:
                 $valueCast = SerialCast::class;
                 break;
-            case  ESConfigProperty::TYPE_MULTILINE:
+            case ESConfigProperty::TYPE_MULTILINE:
+            case ESConfigProperty::TYPE_COMBOBOX:
+            case ESConfigProperty::TYPE_STRING_WITH_SUGGEST:
                 $valueCast = "string";
                 break;
             case ESConfigProperty::TYPE_MONEY:
