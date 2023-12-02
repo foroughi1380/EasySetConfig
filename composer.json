@@ -13,7 +13,7 @@
     "extra" : {
         "laravel": {
             "providers" : [
-                "Gelim\\EMConfig\\Providers\\ConfigServiceProvider"
+                "Gopex\\EasySetConfig\\Providers\\ConfigServiceProvider"
             ],
             "alias" : {
                 "ESConfig" : "Gopex\\EasySetConfig\\facade\\ESConfig"
